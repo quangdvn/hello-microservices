@@ -1,0 +1,31 @@
+{
+  "name": "expiration",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node-dev --poll --respawn --transpile-only --ignore-watch node_modules src/index.ts",
+    "test": "jest --watchAll --no-cache --forceExit --detectOpenHandles"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
+  },
+  "dependencies": {
+    "@quangdvnnnn/common": "^1.0.9",
+    "@types/bull": "^3.14.4",
+    "bull": "^3.20.0",
+    "connect-redis": "^5.0.0",
+    "ioredis": "^4.19.4",
+    "node-nats-streaming": "^0.3.2"
+  },
+  "devDependencies": {
+    "@types/connect-redis": "^0.0.16",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.1.3"
+  }
+}
