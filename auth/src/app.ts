@@ -11,7 +11,10 @@ import connectRedis from 'connect-redis';
 import Redis from 'ioredis';
 
 const RedisStore = connectRedis(session);
-const RedisClient = new Redis('//session-redis-serv:6379');
+const RedisClient =
+  process.env.NODE_ENV === 'test'
+    ? new Redis()
+    : new Redis('//session-redis-serv:6379');
 
 const app = express();
 app.set('trust proxy', true);
@@ -39,7 +42,7 @@ app.use(signOutRouter);
 app.use(signUpRouter);
 
 app.get('/', (_, res: Response) => {
-  res.send({ success: true, data: 'Hello to User Service' });
+  res.send({ success: true, data: 'Hello to Auth Service' });
 });
 
 app.all('*', () => {

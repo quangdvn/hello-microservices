@@ -14,7 +14,7 @@ describe('Current User Route', () => {
   });
 
   it('returns null if not authenticated', async () => {
-    const response = await request(app).get('/me').send().expect(401);
-    expect(response.body.success).toEqual(false);
+    const response = await request(app).get('/me').send().expect(200);
+    expect(response.body.data).toEqual(null);
   });
 });
