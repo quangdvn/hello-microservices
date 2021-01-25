@@ -14,6 +14,8 @@ declare global {
 let mongo: any;
 
 beforeAll(async () => {
+  jest.setTimeout(5000);
+
   process.env.JWT_KEY = 'quangdvn';
 
   mongo = new MongoMemoryServer();
@@ -27,7 +29,6 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   const collections = await mongoose.connection.db.collections();
-
   for (let collection of collections) {
     await collection.deleteMany({});
   }

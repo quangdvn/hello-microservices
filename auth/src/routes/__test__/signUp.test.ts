@@ -1,5 +1,18 @@
 import request from 'supertest';
 import { app } from '../../app';
+import Redis from 'ioredis';
+
+const redis = new Redis();
+
+beforeAll(async () => {
+  if (redis.status === 'end') {
+    await redis.connect(() => console.log('Done'));
+  }
+});
+
+afterAll(async () => {
+  await redis.quit();
+});
 
 describe('Sign Up Route', () => {
   it('returns 201 on successful sign up', async () => {
