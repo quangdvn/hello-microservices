@@ -22,4 +22,14 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push to Docker Hub
         run: docker push quangdvn/auth
+      - name: Install Doctl 
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_ACCESS_TOKEN }}
+      - name: Save new cluster
+        run: doctl kubernetes cluster kubeconfig save quangdvn-ticketing
+      - name: Get k8s nodes
+        run: kubectl get nodes
+      - name: Restart k8s cluster
+        run: kubectl rollout restart deployment auth-depl
         
