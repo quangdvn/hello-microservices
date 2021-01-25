@@ -15,7 +15,7 @@ spec:
       containers:
         - name: tickets
           image: quangdvn/tickets
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

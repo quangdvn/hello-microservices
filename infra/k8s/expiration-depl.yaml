@@ -15,7 +15,7 @@ spec:
       containers:
         - name: expiration
           image: quangdvn/expiration
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
